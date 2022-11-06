@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+
+	.slide-wrapper {
+		width: 90vw;
+		border-radius: 0.2rem;
+		overflow: hidden;
+
+		[data-slide] {
+			display: flex;
+			list-style: none;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			scroll-snap-type: x mandatory;
+			-webkit-overflow-scrolling: touch;
+			scroll-behavior: smooth;
+
+			li {
+				flex: 0 0 auto; // Doesn't allow the li reduce the size, will expand as much as img can.
+				width: 100%;
+				height: 400px;
+				scroll-snap-align: start;
+				pointer-events: none; // Will not effect scroll event, passing to the parent,
+				// without this when scrolling with the mouse under a img nothing will happen
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+
+			&::-webkit-scrollbar {
+				background-color: #eee;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: red;
+				border: 0.3rem solid #eee;
+				border-radius: 0.5rem;
+				background-color: #adadad;
+
+				&:hover {
+					background-color: #797979;
+				}
+			}
+		}
+	}
+}
